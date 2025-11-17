@@ -1,6 +1,6 @@
 
 
-# **Diabetes Readmission Prediction – Data Analytics & Modeling Project**
+# **Diabetes Readmission Prediction – Data Analytics & Modeling Project in R**
 
 ## 📌 **Overview**
 
