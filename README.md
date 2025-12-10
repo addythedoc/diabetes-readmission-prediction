@@ -2,7 +2,7 @@
 **Diabetes Readmission Prediction – Data Analytics & Modeling in R**
 
 Part of my Public Health & Healthcare Analytics Portfolio
-Portfolio: https://github.com/yourusername/public-health-analytics-portfolio
+Portfolio: https://github.com/addythedoc/public-health-data-analytics-portfolio
 
 **Overview**
 
