@@ -1,168 +1,169 @@
 
+**Diabetes Readmission Prediction – Data Analytics & Modeling in R**
 
-# **Diabetes Readmission Prediction – Data Analytics & Modeling Project in R**
+Part of my Public Health & Healthcare Analytics Portfolio
+Portfolio: https://github.com/yourusername/public-health-analytics-portfolio
 
-## 📌 **Overview**
+**Overview**
 
-This project demonstrates a complete end-to-end **data science workflow in R**, beginning with loading and cleaning the raw UCI hospital dataset, performing exploratory data analysis (EDA) on patient characteristics, building baseline predictive models (Logistic Regression & Random Forest), and interpreting key drivers of 30-day hospital readmission.
+This project demonstrates a complete end-to-end data science workflow in R using the UCI Diabetes 130-US Hospitals dataset. The analysis includes loading and cleaning raw hospital encounter data, performing exploratory data analysis (EDA), building baseline predictive models, and interpreting key drivers of 30-day hospital readmission.
 
-A concise project report and visual outputs summarize key findings.
+The project highlights applied skills in R programming, data cleaning, exploratory analysis, statistical modeling, machine learning, visualization, and healthcare analytics.
 
-This project demonstrates skills in **R programming, data cleaning, EDA, modeling, visualization, and healthcare analytics.**
+**Dataset**
 
----
+Name: Diabetes 130-US Hospitals Readmission Dataset
 
-## 📂 **Dataset**
+Source: UCI Machine Learning Repository
 
-**Name:** Diabetes 130-US Hospitals Readmission Dataset
-**Source:** UCI Machine Learning Repository
-**Rows:** ~100,000 hospital encounters
-**Columns:** Demographics, diagnoses, treatments, lab procedures, medications
-**Target Variable:**
-`readmitted_30` → YES (readmitted within 30 days) or NO
+Size: ~100,000 inpatient encounters (1999–2008)
 
-This dataset is widely used for clinical readmission prediction research.
+Features: Demographics, diagnoses, treatments, lab procedures, medications
 
----
+Outcome variable:
+readmitted_30 → YES (readmitted within 30 days) or NO
 
-## 🛠 **Tools & Technologies**
+Raw and processed data files are not included in this repository due to file size limitations and best practices. Instructions to recreate them are provided in the data/README.md file.
 
-* **R (tidyverse, janitor)** → Data cleaning & processing
-* **ggplot2** → Exploratory data visualization
-* **caret** → Train/test split, evaluation
-* **pROC** → ROC curves & AUC
-* **randomForest** → Non-linear predictive modeling
-* **GitHub** → Version control & open-source sharing
+**Tools & Technologies**
 
----
+R: tidyverse, janitor
 
-## 📘 **Project Steps**
+Visualization: ggplot2
 
-### **1. Data Loading & Cleaning (R)**
+Modeling & evaluation: caret, pROC, randomForest
 
-* Loaded raw CSV from UCI dataset
-* Cleaned inconsistent column names
-* Converted `"?"` entries to proper missing values
-* Created binary outcome variable (`readmitted_30`)
-* Converted key fields (age, race, gender, admissions) into categorical factors
-* Exported cleaned dataset for further work
+Version control: Git & GitHub
 
-📄 *Script:* `R/01_load_clean.R`
+**Project Workflow**
 
----
+**Data Loading & Cleaning**
 
-### **2. Exploratory Data Analysis (EDA)**
+Key steps included:
 
-EDA was conducted to understand patient demographics, clinical complexity, and readmission patterns.
+Loading the raw UCI diabetes dataset
 
-Key analyses included:
+Standardizing column names
 
-* Time in hospital vs readmission
-* Readmission proportion by age group
-* Summary of lab procedures, diagnoses, and medications
-* Distribution of demographic features
+Replacing "?" placeholders with missing values
 
-Visuals produced:
+Creating the binary outcome variable (readmitted_30)
 
-* **Boxplot:** Time in hospital by readmission status
-* **Bar Chart:** Readmission rate across age groups
+Converting key variables (age, race, gender, admission characteristics) into categorical factors
 
-📄 *Script:* `R/02_eda.R`
-📁 *Plots:* `outputs/plots/`
+Exporting a cleaned, analysis-ready dataset
 
----
+Script: scripts/01_load_clean.R
 
-### **3. Predictive Modeling (R)**
+**Exploratory Data Analysis (EDA)**
 
-Two baseline models were built:
+EDA focused on understanding patient demographics, clinical complexity, and hospitalization patterns.
 
-#### **a. Logistic Regression**
+Analyses included:
 
-* Trained on a 20,000-row sample for computational efficiency
-* Interpretable coefficients
-* Predictors included
-  `age`, `number_diagnoses`, `num_lab_procedures`, `num_medications`, etc.
-* **AUC: 0.5738**
+Time in hospital by readmission status
 
-#### **b. Random Forest**
+Readmission proportion by age group
 
-* 200 trees, mtry = 4
-* Captures nonlinear patterns
-* **AUC: 0.5695**
+Distribution of diagnoses, laboratory procedures, and medications
 
-📄 *Script:* `R/03_model.R`
+Descriptive summaries of demographic variables
 
----
+Key visualizations:
 
-### **4. Variable Importance Analysis**
+Boxplot of time in hospital by readmission status
 
-Random Forest importance revealed:
+Bar chart of readmission proportions across age groups
 
-* Number of lab procedures
-* Number of medications
-* Time in hospital
-* Number of diagnoses
-* Age
-* Admission/Discharge type
+Script: scripts/02_eda.R
+Figures saved in: outputs/figures/
 
-These variables strongly influence readmission risk.
+**Predictive Modeling**
 
-📊 *Plot:* `rf_variable_importance_top20.png`
+Two baseline classification models were built.
 
----
+**Logistic Regression**
 
-## 📊 **Results & Insights (Summary)**
+Trained on a 20,000-row sample for computational efficiency
 
-* Readmission risk **increases strongly with age**, especially 70+
-* Clinical complexity (labs, meds, diagnoses) predicts readmission
-* Length of stay is modestly higher in readmitted patients
-* Administrative transitions (admission/discharge type) matter
-* Models achieve **AUC ~0.57**, typical for administrative hospital data
-* Suggests value of adding comorbidity scores, follow-up data, and richer clinical variables
+Predictors included age, time in hospital, number of diagnoses, laboratory procedures, medications, admission and discharge characteristics, race, and gender
 
----
+Performance assessed using confusion matrix and ROC–AUC
 
-# ▶ **How to Run This Project**
+Observed AUC: approximately 0.55–0.57
 
-### **1. Clone the Repository**
+**Random Forest**
 
-```
-git clone https://github.com/yourusername/diabetes-readmission-prediction.git
-```
+200-tree random forest with tuned parameters
 
-### **2. Install Required Libraries**
+Captured nonlinear relationships and interactions
 
-```r
-install.packages(c("tidyverse", "janitor", "caret", "pROC", "randomForest"))
-```
+Evaluated using confusion matrix and ROC–AUC
 
-### **3. Run Data Cleaning**
+Observed AUC: approximately 0.57–0.58
 
-```r
-source("R/01_load_clean.R")
-```
+Script: scripts/03_model.R
 
-### **4. Run EDA**
+**Variable Importance**
 
-```r
-source("R/02_eda.R")
-```
+Random forest variable importance analysis identified the strongest predictors of readmission risk:
 
-### **5. Run Modeling**
+Number of laboratory procedures
 
-```r
-source("R/03_model.R")
-```
+Number of medications
 
----
+Time in hospital
 
-## 📧 **Contact**
+Number of diagnoses
 
-**Aditya Kumar**
+Age
+
+Admission and discharge type
+
+A ranked importance plot is included in the outputs folder.
+
+**Results & Key Insights**
+
+Readmission risk increases with age, especially in older populations
+
+Clinical complexity (labs, medications, diagnoses) strongly predicts readmission
+
+Readmitted patients tend to have slightly longer hospital stays
+
+Administrative transitions during admission and discharge play an important role
+
+Predictive performance (AUC ≈ 0.57) is typical for models using administrative hospital data alone
+
+These findings suggest that enhanced clinical, outpatient follow-up, and social determinants data are likely required for substantial improvement in readmission prediction.
+
+**How to Run the Project**
+
+Clone the repository to your local machine
+
+Download the raw dataset from the UCI Machine Learning Repository
+
+Place the raw CSV file in the data/raw/ directory
+
+Run the scripts in the following order:
+
+scripts/01_load_clean.R
+
+scripts/02_eda.R
+
+scripts/03_model.R
+
+**Repository Structure**
+
+data/ — Processed data descriptions (data file excluded)
+
+scripts/ — R scripts for cleaning, EDA, and modeling
+
+outputs/figures/ — Key visualizations
+
+outputs/models/ — Model summaries and importance tables
+
+**Contact**
+
+Aditya Kumar
 Public Health Data Analyst | Epidemiology | R | Python | SQL
-📩 Email: **[neplusultraa@gmail.com]**
-
----
-
-
-
+Email: neplusultraa@gmail.com
